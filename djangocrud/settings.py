@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-5wm(7ho8*#go1n)*zpetkf1p4d6^#05gh@#z0zhy2iw&e9l!s2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django-grocery-bud-1.onrender.com/']
 
-
+CSRF_TRUSTED_ORIGINS = ['https://django-grocery-bud-1.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
