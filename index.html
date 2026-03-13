@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grocery Bud</title>
+  <style>
+    body{
+      font-family: Arial;
+      text-align:center;
+      margin-top:50px;
+    }
+    input{
+      padding:8px;
+    }
+    button{
+      padding:8px 12px;
+      margin-left:5px;
+    }
+    li{
+      margin:10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Grocery Bud</h1>
+
+<input id="itemInput" placeholder="e.g. eggs">
+<button onclick="addItem()">Add Item</button>
+
+<ul id="list"></ul>
+
+<script>
+
+let items = JSON.parse(localStorage.getItem("items")) || [];
+
+function render(){
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  items.forEach((item,index)=>{
+    const li = document.createElement("li");
+    li.innerHTML = item + 
+      ` <button onclick="deleteItem(${index})">Delete</button>`;
+    list.appendChild(li);
+  });
+
+  localStorage.setItem("items", JSON.stringify(items));
+}
+
+function addItem(){
+  const input = document.getElementById("itemInput");
+  if(input.value.trim() !== ""){
+    items.push(input.value);
+    input.value="";
+    render();
+  }
+}
+
+function deleteItem(i){
+  items.splice(i,1);
+  render();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
