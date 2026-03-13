@@ -1,70 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grocery Bud</title>
-  <style>
-    body{
-      font-family: Arial;
-      text-align:center;
-      margin-top:50px;
-    }
-    input{
-      padding:8px;
-    }
-    button{
-      padding:8px 12px;
-      margin-left:5px;
-    }
-    li{
-      margin:10px;
-    }
-  </style>
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <!-- same css files as your project -->
+  <link rel="stylesheet" href="static/grocery/css/global.css">
+  <link rel="stylesheet" href="static/grocery/css/single-item.css">
+  <link rel="stylesheet" href="static/grocery/css/items.css">
+  <link rel="stylesheet" href="static/grocery/css/form.css">
 </head>
 
 <body>
 
-<h1>Grocery Bud</h1>
+<section class="section-center">
 
-<input id="itemInput" placeholder="e.g. eggs">
-<button onclick="addItem()">Add Item</button>
+  <form>
+    <h2>grocery bud</h2>
 
-<ul id="list"></ul>
+    <div class="form-control">
+      <input
+      type="text"
+      class="form-input"
+      placeholder="e.g. eggs">
 
-<script>
+      <button type="submit" class="btn">
+        add item
+      </button>
+    </div>
+  </form>
 
-let items = JSON.parse(localStorage.getItem("items")) || [];
+  <!-- Items List -->
 
-function render(){
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+  <div class="items">
 
-  items.forEach((item,index)=>{
-    const li = document.createElement("li");
-    li.innerHTML = item + 
-      ` <button onclick="deleteItem(${index})">Delete</button>`;
-    list.appendChild(li);
-  });
+    <div class="single-item">
 
-  localStorage.setItem("items", JSON.stringify(items));
-}
+      <input type="checkbox">
 
-function addItem(){
-  const input = document.getElementById("itemInput");
-  if(input.value.trim() !== ""){
-    items.push(input.value);
-    input.value="";
-    render();
-  }
-}
+      <p>eggs</p>
 
-function deleteItem(i){
-  items.splice(i,1);
-  render();
-}
+      <a href="#" class="btn icon-btn edit-btn">
+        <i class="fa-regular fa-pen-to-square"></i>
+      </a>
 
-render();
+      <button class="btn icon-btn remove-btn">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
 
-</script>
+    </div>
+
+    <div class="single-item">
+
+      <input type="checkbox">
+
+      <p>milk</p>
+
+      <a href="#" class="btn icon-btn edit-btn">
+        <i class="fa-regular fa-pen-to-square"></i>
+      </a>
+
+      <button class="btn icon-btn remove-btn">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
 
 </body>
 </html>
